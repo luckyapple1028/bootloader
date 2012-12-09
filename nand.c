@@ -1,14 +1,4 @@
-#define	NFCONF  (*(volatile unsigned int *)0xB0E00000) 
-#define	NFCONT  (*(volatile unsigned int *)0xB0E00004) 	
-#define	NFCMMD  (*(volatile unsigned char *)0xB0E00008) 
-#define	NFADDR  (*(volatile unsigned char *)0xB0E0000C)
-#define	NFDATA  (*(volatile unsigned char *)0xB0E00010)
-#define	NFSTAT  (*(volatile unsigned int *)0xB0E00028)
-
-#define	MP0_3CON  (*(volatile unsigned int *)0xE0200320)
-
-#define PAGE_SIZE	2048
-
+#include "nand.h"
 
 void nand_init(void)
 {
@@ -92,6 +82,15 @@ void nand_read(int sdram_addr, int nand_addr, int size)
 	nand_deselect();
 	
 	return;
+}
+
+void clear_bss(void)
+{
+	extern int __bss_start, __bss_end;
+	int *p = &__bss_start;
+	
+	for (; p < &__bss_end; p++)
+		*p = 0;
 }
 
 

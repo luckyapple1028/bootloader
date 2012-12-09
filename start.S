@@ -27,6 +27,9 @@ move_loop:
 	/* here we use ldr instead of b to jump to SDRAM */
 	/* in addition, we should change -T0x20000010 for using SDRAM */
 
+	/*清bss段*/
+	bl clear_bss
+	
 	/* 执行main程序，使用位置相关码来跳转 */
 	ldr sp, =0x33e00000	
 	ldr lr, =halt
