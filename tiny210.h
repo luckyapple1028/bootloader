@@ -19,4 +19,12 @@ extern void puts(char *str);
 
 extern void init_taglist(void);
 
+extern void irq_init(void);
+
+extern void eint16_31_irq(void);
+
+extern void rtc_init(void);
+
+extern void eint_rtc_irq(void);
+
 

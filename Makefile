@@ -8,7 +8,7 @@ LIBPATH = -lgcc -L /opt/tiny210/toolschain/4.5.1/lib/gcc/arm-none-linux-gnueabi/
 CFLAGS 		:= -Wall -O2
 CPPFLAGS   	:= -nostdinc -nostdlib -fno-builtin -static
 
-objs := start.o mem_setup.o main.o clock.o nand.o uart.o tag.o buzzer.o
+objs := start.o mem_setup.o main.o clock.o nand.o uart.o tag.o buzzer.o irq.o common_irq.o rtc.o
 
 boot.bin: $(objs)	
 	${LD} -Tboot.lds -o boot.elf $^ $(LIBPATH)

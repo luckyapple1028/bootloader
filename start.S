@@ -3,7 +3,11 @@
 .text
 .global _start
 
+
 _start:
+	b reset      /* CPU复位 */
+
+reset:
 	/* 设置栈 */
 	ldr sp, =0xD0030000
 	/* 初始化时钟 */
@@ -29,9 +33,14 @@ move_loop:
 
 	/*清bss段*/
 	bl clear_bss
+
+	/* 中断初始化 */
+	mrs r0, cpsr
+	bic r0,r0,#0x80  /* 清cpsr的I位 */
+	msr cpsr, r0
 	
 	/* 执行main程序，使用位置相关码来跳转 */
-	ldr sp, =0x33e00000	
+	ldr sp, =0x33e00000
 	ldr lr, =halt
 	ldr pc, =mymain
 
