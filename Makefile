@@ -5,10 +5,11 @@ OBJCOPY = arm-linux-objcopy
 OBJDUMP = arm-linux-objdump
 LIBPATH = -lgcc -L /opt/tiny210/toolschain/4.5.1/lib/gcc/arm-none-linux-gnueabi/4.5.1/
 
-CFLAGS 		:= -Wall -O2
+CFLAGS 		:= -Wall -O1
 CPPFLAGS   	:= -nostdinc -nostdlib -fno-builtin -static
 
-objs := start.o mem_setup.o main.o clock.o nand.o uart.o tag.o buzzer.o irq.o common_irq.o rtc.o
+objs := start.o mem_setup.o main.o clock.o nand.o uart.o tag.o buzzer.o irq.o \
+		common_irq.o rtc.o command.o stdio.o printf.o ymodem.o
 
 boot.bin: $(objs)	
 	${LD} -Tboot.lds -o boot.elf $^ $(LIBPATH)

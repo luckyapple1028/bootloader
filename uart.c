@@ -44,14 +44,16 @@ void uart_putchar(char c)
 	return;
 }
 
-void puts(char *str)
+int uart_getchar_timeout(char *c, unsigned int time)
 {
-	int i = 0;
-	while (str[i])
-	{
-		uart_putchar(str[i]);
-		i++;
+	while(time--){
+		if(UTRSTAT0 & (1<<0)){
+			*c = URXH0;
+			return 0;
+		}	
 	}
+	return -1;
 }
+
 
 

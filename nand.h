@@ -1,4 +1,7 @@
 
+#ifndef __nand_h
+#define __nand_h
+
 #define	NFCONF  (*(volatile unsigned int *)0xB0E00000) 
 #define	NFCONT  (*(volatile unsigned int *)0xB0E00004) 	
 #define	NFCMMD  (*(volatile unsigned char *)0xB0E00008) 
@@ -15,3 +18,5 @@ void nand_init(void);
 
 void nand_read(int sdram_addr, int nand_addr, int size);
 
+
+#endif

@@ -1,4 +1,8 @@
 
+#ifndef __uart_h
+#define __uart_h
+
+
 #define GPA0CON  	(*(volatile unsigned int *)0xE0200000) 
 
 #define ULCON0  	(*(volatile unsigned int *)0xE2900000) 
@@ -16,6 +20,7 @@ char uart_getchar(void);
 
 void uart_putchar(char c);
 
-void puts(char *str);
+int uart_getchar_timeout(char *c, unsigned int time);
 
 
+#endif

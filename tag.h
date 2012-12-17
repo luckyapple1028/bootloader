@@ -1,3 +1,7 @@
+
+#ifndef __tag_h
+#define __tag_h
+
 typedef unsigned int __u32;
 typedef unsigned char __u8;
 typedef unsigned short __u16;
@@ -54,3 +58,5 @@ struct tag {
 
 void init_taglist(void);
 
+
+#endif
